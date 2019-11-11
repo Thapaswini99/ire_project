@@ -1,11 +1,8 @@
-# Structure Based Hate Speech Detection
+# Extraction and summarization of tweets
 
-## Hate Speech
-Hate speech is a kind of writing that disparages and is likely to cause harm or danger to the victim. It is a kind of speech that demonstrates a clear intention to be hurtful, to incite harm, or to promote hatred.
-
-<b>Why automated hate speech detection?</b>
+<b>Why automation of summarization?</b>
 <br/>
-While manual checking for such comments exists on social media, manual checking can never match to the speed of generation of comments on these sites and hence an automated solution is required.
+With the rise of microblogging mainly Twitter in recent years, automated tweet summarization is attracting people as it helps them to get the main views in a short amount of time efficiently.
 
 ## Dataset
 We used a data-set with a corpus of tweets predominantly having offensive language that can be found [here](https://raw.githubusercontent.com/t-davidson/hate-speech-and-offensive-language/master/data/labeled_data.csv?fbclid=IwAR2h6bXVZA4Zh1EVkeGi5fhbnHChqeXxDRL2SCSix8v0SLdD2jhWTAKAz1U). It consists of a total of 24783 tweets. The data-set is skewed as there are relatively lesser number of data points under the hate-speech category.
