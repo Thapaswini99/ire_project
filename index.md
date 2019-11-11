@@ -9,7 +9,7 @@ With the rise of microblogging mainly Twitter in recent years, automated tweet s
 - we used a document-level reconstruction framework named DocRebuild, which reconstructs the documents with summary
   sentences through a neural document model and selects summary sentences to minimize the reconstruction error. 
   We used beam search for selecting the selecting the summary sentences.
-</br>
+  
 ### Approach 2
 - Our second model is based on the pagerank algorithm which is used generally for ranking the webpages. Here we use the same   algorithm for ranking the most important tweets. 
   
