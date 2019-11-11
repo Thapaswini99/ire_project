@@ -4,54 +4,43 @@
 <br/>
 With the rise of microblogging mainly Twitter in recent years, automated tweet summarization is attracting people as it helps them to get the main views in a short amount of time efficiently.
 
-## Dataset
-We used a data-set with a corpus of tweets predominantly having offensive language that can be found [here](https://raw.githubusercontent.com/t-davidson/hate-speech-and-offensive-language/master/data/labeled_data.csv?fbclid=IwAR2h6bXVZA4Zh1EVkeGi5fhbnHChqeXxDRL2SCSix8v0SLdD2jhWTAKAz1U). It consists of a total of 24783 tweets. The data-set is skewed as there are relatively lesser number of data points under the hate-speech category.
-
-Following is the distribution of different classes in the Twitter dataset:
-
-|Type         |Count  |
-|:-----------:|:-----:|
-|Hate Speech  |1430   |
-|Offensive    |19190  |
-|Neither      |4163   |
-|Total        |24783  |
-
-
 ## Our Approach
-We use more than the traditional Machine Learning and Deep Learning techniques that use bag of words featurizer. We use models that utilize the grammatical structure of a sentence. 
-Models omitting the structural semantics of a sentence give an increasing number of false positives. This can be understood by the following example:
-1. Humans are not Ni\*gers. `Not Hatespeech`
-2. Ni\*gers are not humans. `Hatespeech`
+### Approach 1
+- we used a document-level reconstruction framework named DocRebuild, which reconstructs the documents with summary
+  sentences through a neural document model and selects summary sentences to minimize the reconstruction error. 
+  We used beam search for selecting the selecting the summary sentences.
+### Approach 2
+- Our second model is based on the pagerank algorithm which is used generally for ranking the webpages. Here we use the same   algorithm for ranking the most important tweets. 
   
-Our code can be found [here](https://github.com/yp201/structure-based-hate-speech-detection).
+Our code can be found [here](https://github.com/priyendumori/Extraction-and-Summarization-of-Tweets).
 
 ### Dataset Preprocessing 
 To use the tweets, we had to clean them:
-- Convert tweet to lower case
-- Remove 'RT' from every tweet (Keyword that identifies whether a tweet is re-tweet) 
-- Remove special characters that don't contribute positively to accuracy (ex hashtags)
-- Remove URLs
+- remove '\#' from hashtags, punctuation and special characters, links and convert all text to lowercase.  
+- changing abbrevations to full forms
 
 
-### Models and Results
-We implemented SVM and Logistic Regression as baseline models and a simple LSTM and a tree LSTM to capture the structure of sentences. We also implemented a model based on structured self-attention to extract interpretable sentence embedding.
+### Models and results
+We trained Doc2vec model on our twitter corpus and some documents corpus and later used the model to obtain paragraph vectors.The tweets are ranked separately by their cosine similarity to the centroid vector, in decreasing order.he N best tweets are selected as a Candidate set from which the K most appropriate tweets are selected to form a summary. The K most important tweets are selected by using an algorithm called beam search,
 
-#### Baseline Models
-We trained Gensim Word2Vec model on our twitter corpus and later used the model to obtain word vectors.
-Following are the evaluation metrics :
+
+Following are the results for some of the hashtags :
 
 <br/>
-<b> SVM </b>
-+ Accuracy : 0.814
-+ Precision : 0.815
-+ Recall : 0.815
-+ F1 Score : 0.815
+<b> globalwarming </b>
++ model1
+Is to blame for When you see trends... it becomes undeniably linked to global change. 
+confirmed by planet Earth 'skin temperature test' The last years and century statistics are the real confirmation 
+michh_31415 and often need lots of computing power, which is a problem in view of and Here is a nice position paper by allen_ai to raise awareness for these issues 
+The decline in sea ice seen in the Arctic in recent decades has been linked by scientists to the spread of a deadly virus in marine mammals 
+Did you know that glass can be recycled and re-manufactured an infinite amount of times 
 
-<b> Logistic Regression </b>
-+ Accuracy : 0.839
-+ Precision : 0.843
-+ Recall : 0.843
-+ F1 Score : 0.843
++ model2
+michh_31415 and often need lots of computing power, which is a problem in view of and Here is a nice position paper by allen_ai to raise awareness for these issues
+Walking my son to school last week, wondering at the leaves on the ground, it hit me that I was witnessing remains of the that worked for millions of years and possibly the source of today's hydrocarbons.
+The reason all governments of Australia wont take seriously the threat of global warming is because they are too scared to be known for doing something about it.
+Our summer was cooler than average as well, sad the movement used to push the agenda!
+Because of Global Warming, record wildfires everywhere nowdays have become the new norm Australia, California, Sweden.. my heart goes out to all the poor animals trapped or worse
 
 #### Structured Self-Attentive Sentence Embedding
 We used a model for extracting an interpretable sentence embedding by using self-attention. Instead of using a vector, we use a 2-D matrix to represent the embedding.
