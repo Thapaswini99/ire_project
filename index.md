@@ -27,7 +27,7 @@ We trained Doc2vec model on our twitter corpus and some documents corpus and lat
 Following are the results for some of the hashtags :
 
 <br/>
-#### globalwarming ####
+#### globalwarming
   #### model1
   Is to blame for When you see trends... it becomes undeniably linked to global change. 
   confirmed by planet Earth 'skin temperature test' The last years and century statistics are the real confirmation 
